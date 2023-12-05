@@ -1,0 +1,104 @@
+<!-- Add the doctype tag to tell the browser what type of document this is. -->
+<!DOCTYPE html>
+<!-- Add the  html to start your html document and set the language to english -->
+<html lang="en">
+    <!-- Add the head tag to contain the metadata for the document -->
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Add the title tage to give the document a title -->
+        <title>Safe Space: GIRLS ONLY</title>
+
+        <!-- Use CSS to style this page as a comforting area for girls. -->
+        <style>
+            body{
+                font-family: cursive;
+                background-color: lightpink;
+                color: white;
+            }
+            .container{
+                max-width: 600px;
+                margin: 50px;
+                padding: 20px;
+                background-color: rgb(209, 107, 209);
+                box-shadow: thistle;
+            }
+            .warning{
+                color: rgb(241, 14, 14);
+            }
+            h1{
+                text-align: center;
+            }
+        </style>
+
+    </head>
+    <!-- Add the body tage to contain the visible page content -->
+    <body>
+        <!-- This will be our main container for our content -->
+        <div class="container">
+            <!-- Let's put a header for our title in our Safe Space app -->
+            <h1>Safe Space: GIRLS ONLY</h1>
+            <!-- Let's add instructions for our user -->
+            <p>Girls! Enter your information to enter our safe space. NO BOYS ALLOWED!</p>
+            <!-- Add a single form for all of our inputs needed -->
+            <form id="girlsForm">
+                <!-- Add a label to label the first name textbox-->
+                <label for="firstName">First Name:</label>
+                <!-- Add the first name textbox-->
+                <input type="text" id="firstName" placeholder="Enter your FIRST name" required><br><br>
+                <!-- Add a label to the last name textbox -->
+                <label for="lastName">Last Name:</label>
+                <!-- Add the last name textbox -->
+                <input type="text" id="lastName" placeholder="Enter your LAST name" required><br><br>
+                <!-- Add the zipcode label -->
+                <label for="zipcode">Zipcode:</label>
+                <!-- Add the zipcode textbox -->
+                <input type="text" id="zipcode" placeholder="Enter your ZIPCODE" required><br><br>
+                <!-- Add the submit button -->
+                <input type="submit" value="Start Chatting!">
+            </form>
+
+            <!-- Add a warning message -->
+            <div class="warning" id="warningMessage"></div>
+
+            <!-- Add a div to hold the rules which are hidden by default -->
+            <div id="enterChat" style="display: none;">
+            Welcome to Safe Space, this is a chat room for preteen/teenage girls to ask questions, discuss with 
+            each other, and more. As stated before, this is a SAFE SPACE meant for GIRLS. There's no bullying, 
+            harrassment, judgement, etc. tolerated. If you are to be reported for valid reasons as listed above,
+             you will be kicked and banned. BUT, most importatnly, HAVE FUN!
+            </div>
+            
+            <!-- Add out javaScript for validation -->
+            <script>
+                // Add an event listener to our form for validation when the user presses "submit" to submit the form
+                document.getElementById("girlsForm").addEventListener("submit", function(event){
+                    // Prevent the default form submit action
+                    event.preventDefault();
+                    // get the data values from the form the user typed in.
+                    const firstName = document.getElementById("firstName").value;
+                    const lastName = document.getElementById("lastName").value;
+                    const zipcode = document.getElementById("zipcode").value;
+
+                    // Combine the first and last name
+                    const fullName = firstName + " " + lastName;
+
+                    // Validate the length of the entire name so that it is not over 20 charcaters long
+                    if(fullName.length > 20){
+                        // If it is over 20 characters long, show the warning message
+                        document.getElementById("warningMessage").innerHTML = "Full Name is too long for our Records";
+                        return;
+                }
+                    // Check if the zipcode is 5 characters long
+                    if(zipcode.length != 5){
+                        // If it is not 5 characters long, show the warning message
+                        document.getElementById("warningMessage").innerHTML = "Invalid Zipcode";
+                        return;
+                    }
+                    // If all validations pass, then show the chat rules.
+                        document.getElementById("enterChat").style.display = "block";
+                });
+            </script>
+        </div>
+    </body>
+</html>
